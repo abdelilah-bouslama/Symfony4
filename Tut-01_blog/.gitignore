@@ -3,16 +3,17 @@
 /.env.local
 /.env.local.php
 /.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
+/public/uploads/
 /var/
 /vendor/
+/.idea/
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
 .phpunit
-.phpunit.result.cache
 /phpunit.xml
+.phpintel
 ###< symfony/phpunit-bridge ###
 
 ###> symfony/web-server-bundle ###

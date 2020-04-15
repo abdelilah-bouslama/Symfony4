@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    locale: 'en'
+    images_directory: '%kernel.project_dir%/public/uploads'
 
 services:
     # default configuration for services in *this* file
@@ -23,8 +25,5 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    App\Repository\:
-        resource: '../src/Repository'
-        arguments: ['@doctrine.orm.entity_manager']
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

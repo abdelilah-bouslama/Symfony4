@@ -1,4 +1,3 @@
-{# templates/base.html.twig #}
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +7,7 @@
 
 	{% block stylesheets %}
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/app.css') }}">
 	{% endblock %}
 </head>
@@ -15,10 +15,17 @@
 	<nav>
 	    <div class="nav-wrapper">
 	    	<div class="container">
-	    		<a href="#" class="brand-logo">Symfony Blog</a>
+	    		<a href="{{ path('homepage') }}" class="brand-logo">Symfony Blog</a>
 			      	<ul id="nav-mobile" class="right hide-on-med-and-down">
-			        <li><a href="#">Home</a></li>
-			        <li><a href="#">Login</a></li>
+			        <li><a href="{{ path('homepage') }}">Home</a></li>
+			        {% if app.user %}
+			        	{% if is_granted('ROLE_ADMIN') %}
+							<li><a href="/admin">Admin.</a></li>
+						{% endif %}
+						<li><a href="/logout">Logout</a></li>
+					{% else %}
+						<li><a href="/login">Login</a></li>
+			        {% endif %}
 		      	</ul>
 	    	</div>
 	    </div>
@@ -31,6 +38,10 @@
 	{% block scripts %}
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+		<script type="text/javascript">
+			$('select').formSelect();
+		</script>
 	{% endblock %}
 </body>
 </html>

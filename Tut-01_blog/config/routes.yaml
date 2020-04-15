@@ -1,5 +1,3 @@
-#config/routes.yaml
-
 homepage:
   path: /
   controller: App\Controller\BlogController::index
@@ -23,3 +21,7 @@ article_remove:
   controller: App\Controller\BlogController::remove
   requirements:
     id: '\d+'
+
+admin:
+  path: /admin
+  controller: App\Controller\BlogController::admin

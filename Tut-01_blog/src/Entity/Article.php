@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
@@ -25,6 +26,7 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Ce champ ne peut pas etre vide.")
      */
     private $title;
 
@@ -52,6 +54,11 @@ class Article
      * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="articles")
      */
     private $categories;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $url;
 
     public function __construct()
     {
@@ -157,6 +164,18 @@ class Article
         if ($this->categories->contains($category)) {
             $this->categories->removeElement($category);
         }
+
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(string $url): self
+    {
+        $this->url = $url;
 
         return $this;
     }
