@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Agency!{% endblock %}
+
+{% block body %}
+<div class="jumbotron text-center">
+    <h1>Welcome to my agency</h1>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+    </p>
+</div>
+<div class="container">
+    <h2>my latest properties</h2>
+    <div class="row flex">
+        {% for property in properties%}
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{  path('show', {slug: property.slug,id:property.id}) }}">{{property.title}}</a>
+                    </h5>
+                    <p class="card-text">{{property.price}} $</p>
+                    <p class="card-text">{{property.city}} ({{property.postalCode}})</p>
+                    <div class="text-primary" style="font-weigh: bold; font-size: 2rem;">{{property.formatedPrice}} $</div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="navigation">
+        {{ knp_pagination_render(properties) }}
+    </div>
+</div>
+{% endblock %}
